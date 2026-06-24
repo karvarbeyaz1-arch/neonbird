@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Neon Bird</title>
+
+<!-- PWA Manifest (inline) -->
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk5lb24gQmlyZCIsCiAgInNob3J0X25hbWUiOiAiTmVvbiBCaXJkIiwKICAiZGVzY3JpcHRpb24iOiAiQSBuZW9uLXN0eWxlZCBGbGFwcHkgQmlyZCBnYW1lIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogImZ1bGxzY3JlZW4iLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAyMDQwZSIsCiAgInRoZW1lX2NvbG9yIjogIiMwMEQ0RkYiLAogICJpY29ucyI6IFsKICAgIHsic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTVRJZ05URXlJajRLSUNBOFpHVm1jejRLSUNBZ0lEeHlZV1JwWVd4SGNtRmthV1Z1ZENCcFpEMGlZbWNpSUdONFBTSTFNQ1VpSUdONVBTSTFNQ1VpSUhJOUlqVXdKU0krQ2lBZ0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU1DVWlJSE4wYjNBdFkyOXNiM0k5SWlNd05qQmxOREFpTHo0S0lDQWdJQ0FnUEhOMGIzQWdiMlptYzJWMFBTSXhNREFsSWlCemRHOXdMV052Ykc5eVBTSWpNREl3TkRCbElpOCtDaUFnSUNBOEwzSmhaR2xoYkVkeVlXUnBaVzUwUGdvZ0lDQWdQSEpoWkdsaGJFZHlZV1JwWlc1MElHbGtQU0ppYjJSNUlpQmplRDBpTXpVbElpQmplVDBpTXpBbElpQnlQU0kzTUNVaVBnb2dJQ0FnSUNBOGMzUnZjQ0J2Wm1aelpYUTlJakFsSWlCemRHOXdMV052Ykc5eVBTSWpZV0ZtTkdabUlpOCtDaUFnSUNBZ0lEeHpkRzl3SUc5bVpuTmxkRDBpTWpVbElpQnpkRzl3TFdOdmJHOXlQU0lqTURCRU5FWkdJaTgrQ2lBZ0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU56QWxJaUJ6ZEc5d0xXTnZiRzl5UFNJak1EQTRPR0ppSWk4K0NpQWdJQ0FnSUR4emRHOXdJRzltWm5ObGREMGlNVEF3SlNJZ2MzUnZjQzFqYjJ4dmNqMGlJekF3TkRRMk5pSXZQZ29nSUNBZ1BDOXlZV1JwWVd4SGNtRmthV1Z1ZEQ0S0lDQWdJRHhtYVd4MFpYSWdhV1E5SW1kc2IzY2lQZ29nSUNBZ0lDQThabVZIWVhWemMybGhia0pzZFhJZ2MzUmtSR1YyYVdGMGFXOXVQU0k0SWlCeVpYTjFiSFE5SW1Kc2RYSWlMejRLSUNBZ0lDQWdQR1psVFdWeVoyVStQR1psVFdWeVoyVk9iMlJsSUdsdVBTSmliSFZ5SWk4K1BHWmxUV1Z5WjJWT2IyUmxJR2x1UFNKVGIzVnlZMlZIY21Gd2FHbGpJaTgrUEM5bVpVMWxjbWRsUGdvZ0lDQWdQQzltYVd4MFpYSStDaUFnUEM5a1pXWnpQZ29nSUR4eVpXTjBJSGRwWkhSb1BTSTFNVElpSUdobGFXZG9kRDBpTlRFeUlpQnllRDBpT0RBaUlHWnBiR3c5SW5WeWJDZ2pZbWNwSWk4K0NpQWdQR05wY21Oc1pTQmplRDBpT0RBaUlHTjVQU0kyTUNJZ2NqMGlNaUlnWm1sc2JEMGlkMmhwZEdVaUlHOXdZV05wZEhrOUlqQXVOeUl2UGdvZ0lEeGphWEpqYkdVZ1kzZzlJakU0TUNJZ1kzazlJalF3SWlCeVBTSXhMalVpSUdacGJHdzlJbmRvYVhSbElpQnZjR0ZqYVhSNVBTSXdMalVpTHo0S0lDQThZMmx5WTJ4bElHTjRQU0l6T0RBaUlHTjVQU0k0TUNJZ2NqMGlNaUlnWm1sc2JEMGlkMmhwZEdVaUlHOXdZV05wZEhrOUlqQXVOaUl2UGdvZ0lEeGphWEpqYkdVZ1kzZzlJalEwTUNJZ1kzazlJalV3SWlCeVBTSXhMalVpSUdacGJHdzlJbmRvYVhSbElpQnZjR0ZqYVhSNVBTSXdMalFpTHo0S0lDQThZMmx5WTJ4bElHTjRQU0l6TWpBaUlHTjVQU0l6TUNJZ2NqMGlNU0lnWm1sc2JEMGlkMmhwZEdVaUlHOXdZV05wZEhrOUlqQXVPQ0l2UGdvZ0lEeGxiR3hwY0hObElHTjRQU0l5TVRVaUlHTjVQU0l5TXpBaUlISjRQU0kxTlNJZ2NuazlJamcxSWlCbWFXeHNQU0lqTURBNU9XTmpJaUJtYVd4MFpYSTlJblZ5YkNnaloyeHZkeWtpSUc5d1lXTnBkSGs5SWpBdU9TSXZQZ29nSUR4bGJHeHBjSE5sSUdONFBTSXhORGdpSUdONVBTSXlOalVpSUhKNFBTSXpNQ0lnY25rOUlqRXlJaUJtYVd4c1BTSWpNREJFTkVaR0lpQjBjbUZ1YzJadmNtMDlJbkp2ZEdGMFpTZ3RNakFnTVRRNElESTJOU2tpSUc5d1lXTnBkSGs5SWpBdU9DSXZQZ29nSUR4bGJHeHBjSE5sSUdONFBTSXhORFVpSUdONVBTSXlPREFpSUhKNFBTSXpNQ0lnY25rOUlqRXdJaUJtYVd4c1BTSWpNREE1T1dOaklpQjBjbUZ1YzJadmNtMDlJbkp2ZEdGMFpTZ3dJREUwTlNBeU9EQXBJaUJ2Y0dGamFYUjVQU0l3TGpnaUx6NEtJQ0E4Wld4c2FYQnpaU0JqZUQwaU1UUTRJaUJqZVQwaU1qazFJaUJ5ZUQwaU16QWlJSEo1UFNJeE1pSWdabWxzYkQwaUl6QXdSRFJHUmlJZ2RISmhibk5tYjNKdFBTSnliM1JoZEdVb01qQWdNVFE0SURJNU5Ta2lJRzl3WVdOcGRIazlJakF1T0NJdlBnb2dJRHhsYkd4cGNITmxJR040UFNJeU9EVWlJR041UFNJeU5qVWlJSEo0UFNJeE1EVWlJSEo1UFNJNE1pSWdabWxzYkQwaWRYSnNLQ05pYjJSNUtTSWdabWxzZEdWeVBTSjFjbXdvSTJkc2IzY3BJaTgrQ2lBZ1BHVnNiR2x3YzJVZ1kzZzlJakkxT0NJZ1kzazlJakl6TlNJZ2NuZzlJak00SWlCeWVUMGlNallpSUdacGJHdzlJbkpuWW1Fb01qVTFMREkxTlN3eU5UVXNNQzR5TWlraUlIUnlZVzV6Wm05eWJUMGljbTkwWVhSbEtDMHlNQ0F5TlRnZ01qTTFLU0l2UGdvZ0lEeGphWEpqYkdVZ1kzZzlJak0wTlNJZ1kzazlJakl6TlNJZ2NqMGlNeklpSUdacGJHdzlJbmRvYVhSbElpOCtDaUFnUEdOcGNtTnNaU0JqZUQwaU16UTFJaUJqZVQwaU1qTTFJaUJ5UFNJeU15SWdabWxzYkQwaUl6QXdOemRqWXlJdlBnb2dJRHhqYVhKamJHVWdZM2c5SWpNME9DSWdZM2s5SWpJek9DSWdjajBpTVRRaUlHWnBiR3c5SWlNd01UQmhNVFFpTHo0S0lDQThZMmx5WTJ4bElHTjRQU0l6TlRVaUlHTjVQU0l5TWpnaUlISTlJamNpSUdacGJHdzlJbmRvYVhSbElpQnZjR0ZqYVhSNVBTSXdMamsxSWk4K0NpQWdQSEJoZEdnZ1pEMGlUVE0zTlN3eU5UVWdVVFF4TUN3eU5UZ2dOREk0TERJMk5TQlJOREExTERJM01pQXpOelVzTWpjd0lGb2lJR1pwYkd3OUlpTkdSa1EyTURBaUx6NEtJQ0E4Y0dGMGFDQmtQU0pOTXpjMUxESTNNaUJSTkRBMUxESTNPQ0EwTWpJc01qYzRJRkUwTURBc01qa3dJRE0zTlN3eU9EWWdXaUlnWm1sc2JEMGlJMlUyWWpnd01DSXZQZ29nSUR4bGJHeHBjSE5sSUdONFBTSXlPRFVpSUdONVBTSXlOalVpSUhKNFBTSXhNRGNpSUhKNVBTSTROQ0lnWm1sc2JEMGlibTl1WlNJZ2MzUnliMnRsUFNKeVoySmhLREFzTWpJd0xESTFOU3d3TGpNcElpQnpkSEp2YTJVdGQybGtkR2c5SWpJaUx6NEtJQ0E4ZEdWNGRDQjRQU0l5TlRZaUlIazlJak01T0NJZ1ptOXVkQzFtWVcxcGJIazlJa0Z5YVdGc0lFSnNZV05yTEhOaGJuTXRjMlZ5YVdZaUlHWnZiblF0YzJsNlpUMGlOeklpSUdadmJuUXRkMlZwWjJoMFBTSTVNREFpSUhSbGVIUXRZVzVqYUc5eVBTSnRhV1JrYkdVaUlHWnBiR3c5SWlNd01FUTBSa1lpSUdacGJIUmxjajBpZFhKc0tDTm5iRzkzS1NJK1RrVlBUand2ZEdWNGRENEtJQ0E4ZEdWNGRDQjRQU0l5TlRZaUlIazlJalEyT0NJZ1ptOXVkQzFtWVcxcGJIazlJa0Z5YVdGc0lFSnNZV05yTEhOaGJuTXRjMlZ5YVdZaUlHWnZiblF0YzJsNlpUMGlOeklpSUdadmJuUXRkMlZwWjJoMFBTSTVNREFpSUhSbGVIUXRZVzVqYUc5eVBTSnRhV1JrYkdVaUlHWnBiR3c5SWlOR1JqQXdOa1VpSUdacGJIUmxjajBpZFhKc0tDTm5iRzkzS1NJK1FrbFNSRHd2ZEdWNGRENEtQQzl6ZG1jKyIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSJ9CiAgXQp9">
+
+<!-- Theme & App Meta -->
+<meta name="theme-color" content="#00D4FF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Neon Bird">
+<meta name="application-name" content="Neon Bird">
+<meta name="description" content="A neon-styled Flappy Bird game">
+
+<!-- App Icons -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNjBlNDAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDIwNDBlIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJib2R5IiBjeD0iMzUlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYWFmNGZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDBENEZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNzAlIiBzdG9wLWNvbG9yPSIjMDA4OGJiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwNDQ2NiIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI4IiByZXN1bHQ9ImJsdXIiLz4KICAgICAgPGZlTWVyZ2U+PGZlTWVyZ2VOb2RlIGluPSJibHVyIi8+PGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+PC9mZU1lcmdlPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iODAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGNpcmNsZSBjeD0iODAiIGN5PSI2MCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjQwIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KICA8Y2lyY2xlIGN4PSIzODAiIGN5PSI4MCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjQ0MCIgY3k9IjUwIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIzMjAiIGN5PSIzMCIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIyMTUiIGN5PSIyMzAiIHJ4PSI1NSIgcnk9Ijg1IiBmaWxsPSIjMDA5OWNjIiBmaWx0ZXI9InVybCgjZ2xvdykiIG9wYWNpdHk9IjAuOSIvPgogIDxlbGxpcHNlIGN4PSIxNDgiIGN5PSIyNjUiIHJ4PSIzMCIgcnk9IjEyIiBmaWxsPSIjMDBENEZGIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAgMTQ4IDI2NSkiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIxNDUiIGN5PSIyODAiIHJ4PSIzMCIgcnk9IjEwIiBmaWxsPSIjMDA5OWNjIiB0cmFuc2Zvcm09InJvdGF0ZSgwIDE0NSAyODApIiBvcGFjaXR5PSIwLjgiLz4KICA8ZWxsaXBzZSBjeD0iMTQ4IiBjeT0iMjk1IiByeD0iMzAiIHJ5PSIxMiIgZmlsbD0iIzAwRDRGRiIgdHJhbnNmb3JtPSJyb3RhdGUoMjAgMTQ4IDI5NSkiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIyODUiIGN5PSIyNjUiIHJ4PSIxMDUiIHJ5PSI4MiIgZmlsbD0idXJsKCNib2R5KSIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+CiAgPGVsbGlwc2UgY3g9IjI1OCIgY3k9IjIzNSIgcng9IjM4IiByeT0iMjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHRyYW5zZm9ybT0icm90YXRlKC0yMCAyNTggMjM1KSIvPgogIDxjaXJjbGUgY3g9IjM0NSIgY3k9IjIzNSIgcj0iMzIiIGZpbGw9IndoaXRlIi8+CiAgPGNpcmNsZSBjeD0iMzQ1IiBjeT0iMjM1IiByPSIyMyIgZmlsbD0iIzAwNzdjYyIvPgogIDxjaXJjbGUgY3g9IjM0OCIgY3k9IjIzOCIgcj0iMTQiIGZpbGw9IiMwMTBhMTQiLz4KICA8Y2lyY2xlIGN4PSIzNTUiIGN5PSIyMjgiIHI9IjciIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjk1Ii8+CiAgPHBhdGggZD0iTTM3NSwyNTUgUTQxMCwyNTggNDI4LDI2NSBRNDA1LDI3MiAzNzUsMjcwIFoiIGZpbGw9IiNGRkQ2MDAiLz4KICA8cGF0aCBkPSJNMzc1LDI3MiBRNDA1LDI3OCA0MjIsMjc4IFE0MDAsMjkwIDM3NSwyODYgWiIgZmlsbD0iI2U2YjgwMCIvPgogIDxlbGxpcHNlIGN4PSIyODUiIGN5PSIyNjUiIHJ4PSIxMDciIHJ5PSI4NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDAsMjIwLDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyNTYiIHk9IjM5OCIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI5MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMEQ0RkYiIGZpbHRlcj0idXJsKCNnbG93KSI+TkVPTjwvdGV4dD4KICA8dGV4dCB4PSIyNTYiIHk9IjQ2OCIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI5MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRjAwNkUiIGZpbHRlcj0idXJsKCNnbG93KSI+QklSRDwvdGV4dD4KPC9zdmc+">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNjBlNDAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDIwNDBlIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJib2R5IiBjeD0iMzUlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYWFmNGZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDBENEZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNzAlIiBzdG9wLWNvbG9yPSIjMDA4OGJiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwNDQ2NiIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI4IiByZXN1bHQ9ImJsdXIiLz4KICAgICAgPGZlTWVyZ2U+PGZlTWVyZ2VOb2RlIGluPSJibHVyIi8+PGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+PC9mZU1lcmdlPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iODAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGNpcmNsZSBjeD0iODAiIGN5PSI2MCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjQwIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KICA8Y2lyY2xlIGN4PSIzODAiIGN5PSI4MCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjQ0MCIgY3k9IjUwIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIzMjAiIGN5PSIzMCIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIyMTUiIGN5PSIyMzAiIHJ4PSI1NSIgcnk9Ijg1IiBmaWxsPSIjMDA5OWNjIiBmaWx0ZXI9InVybCgjZ2xvdykiIG9wYWNpdHk9IjAuOSIvPgogIDxlbGxpcHNlIGN4PSIxNDgiIGN5PSIyNjUiIHJ4PSIzMCIgcnk9IjEyIiBmaWxsPSIjMDBENEZGIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAgMTQ4IDI2NSkiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIxNDUiIGN5PSIyODAiIHJ4PSIzMCIgcnk9IjEwIiBmaWxsPSIjMDA5OWNjIiB0cmFuc2Zvcm09InJvdGF0ZSgwIDE0NSAyODApIiBvcGFjaXR5PSIwLjgiLz4KICA8ZWxsaXBzZSBjeD0iMTQ4IiBjeT0iMjk1IiByeD0iMzAiIHJ5PSIxMiIgZmlsbD0iIzAwRDRGRiIgdHJhbnNmb3JtPSJyb3RhdGUoMjAgMTQ4IDI5NSkiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIyODUiIGN5PSIyNjUiIHJ4PSIxMDUiIHJ5PSI4MiIgZmlsbD0idXJsKCNib2R5KSIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+CiAgPGVsbGlwc2UgY3g9IjI1OCIgY3k9IjIzNSIgcng9IjM4IiByeT0iMjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHRyYW5zZm9ybT0icm90YXRlKC0yMCAyNTggMjM1KSIvPgogIDxjaXJjbGUgY3g9IjM0NSIgY3k9IjIzNSIgcj0iMzIiIGZpbGw9IndoaXRlIi8+CiAgPGNpcmNsZSBjeD0iMzQ1IiBjeT0iMjM1IiByPSIyMyIgZmlsbD0iIzAwNzdjYyIvPgogIDxjaXJjbGUgY3g9IjM0OCIgY3k9IjIzOCIgcj0iMTQiIGZpbGw9IiMwMTBhMTQiLz4KICA8Y2lyY2xlIGN4PSIzNTUiIGN5PSIyMjgiIHI9IjciIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjk1Ii8+CiAgPHBhdGggZD0iTTM3NSwyNTUgUTQxMCwyNTggNDI4LDI2NSBRNDA1LDI3MiAzNzUsMjcwIFoiIGZpbGw9IiNGRkQ2MDAiLz4KICA8cGF0aCBkPSJNMzc1LDI3MiBRNDA1LDI3OCA0MjIsMjc4IFE0MDAsMjkwIDM3NSwyODYgWiIgZmlsbD0iI2U2YjgwMCIvPgogIDxlbGxpcHNlIGN4PSIyODUiIGN5PSIyNjUiIHJ4PSIxMDciIHJ5PSI4NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDAsMjIwLDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyNTYiIHk9IjM5OCIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI5MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMEQ0RkYiIGZpbHRlcj0idXJsKCNnbG93KSI+TkVPTjwvdGV4dD4KICA8dGV4dCB4PSIyNTYiIHk9IjQ2OCIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI5MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRjAwNkUiIGZpbHRlcj0idXJsKCNnbG93KSI+QklSRDwvdGV4dD4KPC9zdmc+">
+<link rel="apple-touch-startup-image" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNjBlNDAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDIwNDBlIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJib2R5IiBjeD0iMzUlIiBjeT0iMzAlIiByPSI3MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYWFmNGZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMjUlIiBzdG9wLWNvbG9yPSIjMDBENEZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNzAlIiBzdG9wLWNvbG9yPSIjMDA4OGJiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwNDQ2NiIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI4IiByZXN1bHQ9ImJsdXIiLz4KICAgICAgPGZlTWVyZ2U+PGZlTWVyZ2VOb2RlIGluPSJibHVyIi8+PGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+PC9mZU1lcmdlPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iODAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGNpcmNsZSBjeD0iODAiIGN5PSI2MCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNyIvPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjQwIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KICA8Y2lyY2xlIGN4PSIzODAiIGN5PSI4MCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNiIvPgogIDxjaXJjbGUgY3g9IjQ0MCIgY3k9IjUwIiByPSIxLjUiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIzMjAiIGN5PSIzMCIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIyMTUiIGN5PSIyMzAiIHJ4PSI1NSIgcnk9Ijg1IiBmaWxsPSIjMDA5OWNjIiBmaWx0ZXI9InVybCgjZ2xvdykiIG9wYWNpdHk9IjAuOSIvPgogIDxlbGxpcHNlIGN4PSIxNDgiIGN5PSIyNjUiIHJ4PSIzMCIgcnk9IjEyIiBmaWxsPSIjMDBENEZGIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAgMTQ4IDI2NSkiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIxNDUiIGN5PSIyODAiIHJ4PSIzMCIgcnk9IjEwIiBmaWxsPSIjMDA5OWNjIiB0cmFuc2Zvcm09InJvdGF0ZSgwIDE0NSAyODApIiBvcGFjaXR5PSIwLjgiLz4KICA8ZWxsaXBzZSBjeD0iMTQ4IiBjeT0iMjk1IiByeD0iMzAiIHJ5PSIxMiIgZmlsbD0iIzAwRDRGRiIgdHJhbnNmb3JtPSJyb3RhdGUoMjAgMTQ4IDI5NSkiIG9wYWNpdHk9IjAuOCIvPgogIDxlbGxpcHNlIGN4PSIyODUiIGN5PSIyNjUiIHJ4PSIxMDUiIHJ5PSI4MiIgZmlsbD0idXJsKCNib2R5KSIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+CiAgPGVsbGlwc2UgY3g9IjI1OCIgY3k9IjIzNSIgcng9IjM4IiByeT0iMjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHRyYW5zZm9ybT0icm90YXRlKC0yMCAyNTggMjM1KSIvPgogIDxjaXJjbGUgY3g9IjM0NSIgY3k9IjIzNSIgcj0iMzIiIGZpbGw9IndoaXRlIi8+CiAgPGNpcmNsZSBjeD0iMzQ1IiBjeT0iMjM1IiByPSIyMyIgZmlsbD0iIzAwNzdjYyIvPgogIDxjaXJjbGUgY3g9IjM0OCIgY3k9IjIzOCIgcj0iMTQiIGZpbGw9IiMwMTBhMTQiLz4KICA8Y2lyY2xlIGN4PSIzNTUiIGN5PSIyMjgiIHI9IjciIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjk1Ii8+CiAgPHBhdGggZD0iTTM3NSwyNTUgUTQxMCwyNTggNDI4LDI2NSBRNDA1LDI3MiAzNzUsMjcwIFoiIGZpbGw9IiNGRkQ2MDAiLz4KICA8cGF0aCBkPSJNMzc1LDI3MiBRNDA1LDI3OCA0MjIsMjc4IFE0MDAsMjkwIDM3NSwyODYgWiIgZmlsbD0iI2U2YjgwMCIvPgogIDxlbGxpcHNlIGN4PSIyODUiIGN5PSIyNjUiIHJ4PSIxMDciIHJ5PSI4NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDAsMjIwLDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyNTYiIHk9IjM5OCIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI5MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMEQ0RkYiIGZpbHRlcj0idXJsKCNnbG93KSI+TkVPTjwvdGV4dD4KICA8dGV4dCB4PSIyNTYiIHk9IjQ2OCIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZvbnQtd2VpZ2h0PSI5MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRjAwNkUiIGZpbHRlcj0idXJsKCNnbG93KSI+QklSRDwvdGV4dD4KPC9zdmc+">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Neon Bird">
+<meta property="og:description" content="A neon-styled Flappy Bird game">
+<meta property="og:type" content="game">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; background: #04060f; overflow: hidden; user-select: none; }
+  canvas { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W, H, GROUND_H, PIPE_W, GAP;
+let frame = 0, state = 'idle';
+let score = 0, best = parseInt(localStorage.getItem('fb_best')||'0');
+let pipes = [], pipeTimer = 0, particles = [], stars = [], buildings = [];
+let cityX = 0, groundX = 0, flashAlpha = 0, deadAnimT = 0;
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  GROUND_H = Math.round(H * 0.11);
+  PIPE_W   = Math.round(W * 0.13);
+  GAP      = Math.round(H * 0.20);
+  bird.x   = W * 0.22;
+  if (state === 'idle') bird.y = H * 0.45;
+  initStars(); initBuildings();
+}
+window.addEventListener('resize', resize);
+
+function initStars() {
+  stars = Array.from({length:100}, () => ({
+    x: Math.random()*W, y: Math.random()*H*0.78,
+    r: Math.random()*1.5+0.2, a: Math.random()*0.6+0.3,
+    tw: Math.random()*Math.PI*2, spd: Math.random()*0.3+0.05
+  }));
+}
+function initBuildings() {
+  buildings = []; let bx = 0;
+  while (bx < W+300) {
+    const bw=32+Math.random()*50, bh=60+Math.random()*180;
+    buildings.push({x:bx,w:bw,h:bh,wins:Array.from({length:30},()=>Math.random()>0.4)});
+    bx += bw+3+Math.random()*6;
+  }
+}
+
+/* ════════════════════════════════
+   BIRD — neon kuş
+   ════════════════════════════════ */
+const bird = {
+  x:0, y:0, vy:0,
+  gravity:0.46, jump:-9.0,
+  get R(){ return Math.round(H*0.026); },
+  rot:0, wobble:0, trail:[],
+  wingT: 0,
+
+  reset(){ this.y=H*0.45; this.vy=0; this.rot=0; this.trail=[]; this.wingT=0; },
+  flap(){  this.vy=this.jump; this.wobble=9; this.wingT=Math.PI*0.8; burst(this.x,this.y); },
+
+  update(){
+    if(state!=='playing'){ this.y=H*0.45+Math.sin(frame*0.045)*12; this.rot=0; this.wingT+=0.10; return; }
+    this.vy+=this.gravity; this.vy=Math.min(this.vy,15); this.y+=this.vy;
+    this.rot=Math.min(Math.max(this.vy*4.5,-25),90);
+    if(this.wobble>0) this.wobble--;
+    this.wingT+=0.18;
+    this.trail.unshift({x:this.x,y:this.y,a:0.25});
+    if(this.trail.length>7) this.trail.pop();
+    this.trail.forEach(t=>t.a*=0.70);
+  },
+
+  draw(){
+    const R = this.R;
+    const bw = R*1.15, bh = R*0.88; // daha küçük
+
+    // trail — pembe→cyan gradient iz
+    this.trail.forEach((t,i)=>{
+      ctx.save();
+      ctx.globalAlpha = t.a * 0.55;
+      ctx.shadowBlur = 8; ctx.shadowColor = '#FF006E';
+      ctx.fillStyle = i < 3 ? '#FF006E' : '#00D4FF';
+      const s = 0.48 - i*0.055;
+      ctx.beginPath(); ctx.ellipse(t.x,t.y,bw*s,bh*s,0,0,Math.PI*2); ctx.fill();
+      ctx.restore();
+    });
+
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot*Math.PI/180);
+
+    // kanat (gövdenin arkasında)
+    const wA = Math.sin(this.wingT)*0.75 - 0.25;
+    ctx.save();
+    ctx.translate(-bw*0.05, bh*0.1);
+    ctx.rotate(wA);
+    // kanat gradient: koyu mavi → açık cyan
+    const wg = ctx.createLinearGradient(0, 0, 0, -bw*0.7);
+    wg.addColorStop(0, '#005f88');
+    wg.addColorStop(0.5, '#0099cc');
+    wg.addColorStop(1, '#00cfff');
+    ctx.shadowBlur=10; ctx.shadowColor='#00D4FF';
+    ctx.fillStyle = wg;
+    ctx.beginPath();
+    ctx.ellipse(0, -bw*0.18, bw*0.42, bw*0.68, 0, 0, Math.PI*2);
+    ctx.fill();
+    // kanat üst parlaklık
+    ctx.fillStyle='rgba(255,255,255,0.15)';
+    ctx.beginPath();
+    ctx.ellipse(-bw*0.06, -bw*0.26, bw*0.14, bw*0.22, -0.2, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+
+    // kuyruk tüyleri
+    ctx.save();
+    ctx.translate(-bw*0.88, 0);
+    [-0.35, 0, 0.35].forEach((angle, i) => {
+      ctx.save();
+      ctx.rotate(angle);
+      const tg = ctx.createLinearGradient(0,0,-bw*0.55,0);
+      tg.addColorStop(0,'#0077aa');
+      tg.addColorStop(1,'#00eeff');
+      ctx.fillStyle = tg;
+      ctx.shadowBlur = 6; ctx.shadowColor = '#00D4FF';
+      ctx.beginPath();
+      ctx.moveTo(0, -bh*0.12);
+      ctx.bezierCurveTo(-bw*0.2,-bh*0.08, -bw*0.45,-bh*0.04, -bw*0.55, 0);
+      ctx.bezierCurveTo(-bw*0.45, bh*0.04, -bw*0.2, bh*0.08, 0, bh*0.12);
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    });
+    ctx.restore();
+
+    // gövde — radyal gradient, parlak
+    const bg = ctx.createRadialGradient(-bw*0.2,-bh*0.25,bh*0.05, bw*0.1,bh*0.1,bw*1.1);
+    bg.addColorStop(0, '#aaf4ff');
+    bg.addColorStop(0.25,'#00D4FF');
+    bg.addColorStop(0.7, '#0088bb');
+    bg.addColorStop(1,   '#004466');
+    ctx.shadowBlur=22; ctx.shadowColor='#00D4FF';
+    ctx.fillStyle = bg;
+    ctx.beginPath(); ctx.ellipse(0,0,bw,bh,0,0,Math.PI*2); ctx.fill();
+
+    // gövde kenar çizgisi (neon)
+    ctx.shadowBlur=0;
+    ctx.strokeStyle='rgba(0,220,255,0.35)';
+    ctx.lineWidth=1;
+    ctx.beginPath(); ctx.ellipse(0,0,bw,bh,0,0,Math.PI*2); ctx.stroke();
+
+    // göğüs açık ton
+    const chest = ctx.createRadialGradient(bw*0.15,bh*0.2,0, bw*0.15,bh*0.2,bw*0.55);
+    chest.addColorStop(0,'rgba(180,248,255,0.45)');
+    chest.addColorStop(1,'rgba(0,180,220,0)');
+    ctx.fillStyle = chest;
+    ctx.beginPath(); ctx.ellipse(bw*0.15,bh*0.22,bw*0.5,bh*0.45,0,0,Math.PI*2); ctx.fill();
+
+    // üst highlight (cam parlaması)
+    ctx.fillStyle='rgba(255,255,255,0.28)';
+    ctx.beginPath(); ctx.ellipse(-bw*0.12,-bh*0.35,bw*0.32,bh*0.22,-0.4,0,Math.PI*2); ctx.fill();
+
+    // göz — büyük, etkileyici
+    const ex=bw*0.44, ey=-bh*0.22, er=bh*0.30;
+    // göz arkası koyu halka
+    ctx.fillStyle='rgba(0,20,40,0.6)';
+    ctx.beginPath(); ctx.arc(ex,ey,er*1.25,0,Math.PI*2); ctx.fill();
+    // sklera
+    const sg=ctx.createRadialGradient(ex-er*0.2,ey-er*0.2,er*0.05,ex,ey,er);
+    sg.addColorStop(0,'#ffffff'); sg.addColorStop(1,'#d0f0ff');
+    ctx.fillStyle=sg;
+    ctx.beginPath(); ctx.arc(ex,ey,er,0,Math.PI*2); ctx.fill();
+    // iris (neon mavi)
+    const ig=ctx.createRadialGradient(ex,ey,0,ex,ey,er*0.72);
+    ig.addColorStop(0,'#00aaff');
+    ig.addColorStop(1,'#0055aa');
+    ctx.fillStyle=ig;
+    ctx.beginPath(); ctx.arc(ex,ey,er*0.72,0,Math.PI*2); ctx.fill();
+    // pupil
+    ctx.fillStyle='#010a14';
+    ctx.beginPath(); ctx.arc(ex+er*0.06,ey+er*0.05,er*0.44,0,Math.PI*2); ctx.fill();
+    // ana catchlight
+    ctx.fillStyle='rgba(255,255,255,0.92)';
+    ctx.beginPath(); ctx.arc(ex+er*0.18,ey-er*0.18,er*0.20,0,Math.PI*2); ctx.fill();
+    // küçük ikinci parlaklık
+    ctx.fillStyle='rgba(255,255,255,0.40)';
+    ctx.beginPath(); ctx.arc(ex-er*0.14,ey+er*0.22,er*0.09,0,Math.PI*2); ctx.fill();
+
+    // gaga — iki parçalı, şık
+    ctx.shadowBlur=8; ctx.shadowColor='#FFD600';
+    // üst çene
+    ctx.fillStyle='#FFD600';
+    ctx.beginPath();
+    ctx.moveTo(bw*0.82, -bh*0.08);
+    ctx.quadraticCurveTo(bw*1.05, -bh*0.04, bw*1.18, bh*0.02);
+    ctx.quadraticCurveTo(bw*1.02, bh*0.06, bw*0.82, bh*0.06);
+    ctx.closePath(); ctx.fill();
+    // alt çene
+    ctx.fillStyle='#e6b800';
+    ctx.beginPath();
+    ctx.moveTo(bw*0.82, bh*0.07);
+    ctx.quadraticCurveTo(bw*1.0, bh*0.10, bw*1.12, bh*0.12);
+    ctx.quadraticCurveTo(bw*0.98, bh*0.18, bw*0.82, bh*0.16);
+    ctx.closePath(); ctx.fill();
+    // gaga highlight
+    ctx.shadowBlur=0;
+    ctx.fillStyle='rgba(255,245,150,0.55)';
+    ctx.beginPath();
+    ctx.moveTo(bw*0.84,-bh*0.06);
+    ctx.quadraticCurveTo(bw*1.0,-bh*0.02,bw*1.1,bh*0.02);
+    ctx.quadraticCurveTo(bw*0.98,bh*0.01,bw*0.84,bh*0.01);
+    ctx.closePath(); ctx.fill();
+
+    ctx.restore();
+  }
+};
+
+function drawWing_UNUSED(ctx, R, wAngle){
+  ctx.save();
+  // kanat kökü gövdenin üst-ortasından çıkıyor
+  ctx.translate(-R*0.10, -R*0.05);
+  ctx.rotate(wAngle);
+
+  // Tüy renkleri: uçtan köke doğru kahverengiden sarıya
+  const feathers = [
+    {len:1.85, angle:-0.28, w:0.20, color:'#6b5018'},
+    {len:2.00, angle:-0.14, w:0.22, color:'#7a5c1c'},
+    {len:2.05, angle: 0.00, w:0.24, color:'#8a6820'},
+    {len:1.95, angle: 0.14, w:0.23, color:'#9a7428'},
+    {len:1.75, angle: 0.27, w:0.21, color:'#a88030'},
+    {len:1.45, angle: 0.38, w:0.19, color:'#b89040'},
+    {len:1.10, angle: 0.47, w:0.17, color:'#c89c48'},
+  ];
+
+  feathers.forEach(f => {
+    ctx.save();
+    ctx.rotate(f.angle);
+    const len = R * f.len;
+    const hw  = R * f.w;
+
+    // tüy gölgesi
+    ctx.fillStyle = 'rgba(0,0,0,0.12)';
+    ctx.beginPath();
+    ctx.moveTo(hw*0.3, 0);
+    ctx.bezierCurveTo( hw*0.6, -len*0.35,  hw*0.5, -len*0.75,  hw*0.1,  -len);
+    ctx.bezierCurveTo( hw*0.6, -len*0.75,  hw*0.9, -len*0.35,  hw*1.2,   0);
+    ctx.closePath(); ctx.fill();
+
+    // tüy dolgusu
+    const tg = ctx.createLinearGradient(0,0,0,-len);
+    tg.addColorStop(0, f.color);
+    tg.addColorStop(0.5, lighten(f.color, 18));
+    tg.addColorStop(1,   darken(f.color, 15));
+    ctx.fillStyle = tg;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(-hw*0.5, -len*0.3, -hw*0.4, -len*0.7,  0,      -len);
+    ctx.bezierCurveTo( hw*0.4, -len*0.7,  hw*0.5, -len*0.3,  0,       0);
+    ctx.fill();
+
+    // orta damar
+    ctx.strokeStyle = 'rgba(0,0,0,0.18)';
+    ctx.lineWidth = 0.7;
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(0,-len*0.88); ctx.stroke();
+
+    ctx.restore();
+  });
+
+  // Üst örtü tüyleri (covert) — daha kısa, sarımsı-kahve
+  const coverts = [
+    {len:0.90, angle:-0.10, color:'#b89838'},
+    {len:1.00, angle: 0.08, color:'#c8a840'},
+    {len:0.95, angle: 0.24, color:'#d4b448'},
+    {len:0.80, angle: 0.38, color:'#c8a840'},
+  ];
+  coverts.forEach(f => {
+    ctx.save(); ctx.rotate(f.angle);
+    const len=R*f.len, hw=R*0.16;
+    ctx.fillStyle = f.color;
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(-hw,-len*0.4,-hw*0.6,-len*0.8,0,-len);
+    ctx.bezierCurveTo( hw*0.6,-len*0.8, hw,-len*0.4,0,0);
+    ctx.fill();
+    ctx.restore();
+  });
+
+  ctx.restore();
+}
+
+function drawTail_UNUSED(ctx, R){
+  ctx.save();
+  ctx.translate(-R*0.88, R*0.18);
+  ctx.rotate(0.20);
+  const tails=[
+    {a:-0.22, len:0.78, color:'#c09820'},
+    {a: 0.00, len:0.88, color:'#d4aa28'},
+    {a: 0.22, len:0.78, color:'#c09820'},
+  ];
+  tails.forEach(t=>{
+    ctx.save(); ctx.rotate(t.a);
+    const len=R*t.len, hw=R*0.12;
+    const tg=ctx.createLinearGradient(0,0,0,-len);
+    tg.addColorStop(0,t.color); tg.addColorStop(1,lighten(t.color,20));
+    ctx.fillStyle=tg;
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(-hw,-len*0.4,-hw*0.5,-len*0.8,0,-len);
+    ctx.bezierCurveTo( hw*0.5,-len*0.8, hw,-len*0.4,0,0);
+    ctx.fill();
+    ctx.restore();
+  });
+  ctx.restore();
+}
+
+function drawBody_UNUSED(ctx, R, wobble){
+  // dış parlaklık halkası
+  ctx.shadowColor='rgba(210,160,0,0.40)';
+  ctx.shadowBlur=10+wobble*1.5;
+
+  // ana gövde şekli — şişman yuvarlak
+  const bg=ctx.createRadialGradient(-R*0.30,-R*0.30,R*0.05, R*0.05,R*0.08,R*1.10);
+  bg.addColorStop(0,   '#fff4a8');  // tepe çok parlak
+  bg.addColorStop(0.20,'#ffe030');  // parlak sarı
+  bg.addColorStop(0.55,'#d4a010');  // orta
+  bg.addColorStop(0.85,'#a07008');  // koyu alt
+  bg.addColorStop(1,   '#6a4805');  // en koyu kenar
+  ctx.fillStyle=bg;
+  ctx.beginPath();
+  // biraz yatay oval (fotoğraftaki gibi şişman)
+  ctx.ellipse(0, R*0.04, R*1.05, R*0.92, 0, 0, Math.PI*2);
+  ctx.fill();
+  ctx.shadowBlur=0;
+
+  // tüy dokusu — çok hafif radyal çizgiler
+  ctx.save();
+  ctx.beginPath(); ctx.ellipse(0,R*0.04,R*1.05,R*0.92,0,0,Math.PI*2); ctx.clip();
+  ctx.strokeStyle='rgba(120,75,0,0.07)';
+  ctx.lineWidth=0.9;
+  for(let i=0;i<14;i++){
+    const a=(i/14)*Math.PI*2;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(a)*R*0.18, Math.sin(a)*R*0.16+R*0.04);
+    ctx.lineTo(Math.cos(a)*R*0.95, Math.sin(a)*R*0.84+R*0.04);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // karın — krem oval (fotoğrafta açık sarı karın)
+  const belly=ctx.createRadialGradient(R*0.10,R*0.35,0,R*0.10,R*0.35,R*0.65);
+  belly.addColorStop(0,'rgba(255,252,200,0.68)');
+  belly.addColorStop(1,'rgba(255,240,140,0)');
+  ctx.fillStyle=belly;
+  ctx.beginPath();
+  ctx.ellipse(R*0.10, R*0.35, R*0.58, R*0.46, 0.1, 0, Math.PI*2);
+  ctx.fill();
+
+  // gövde kenar çizgisi
+  ctx.strokeStyle='rgba(100,55,0,0.22)';
+  ctx.lineWidth=1;
+  ctx.beginPath();
+  ctx.ellipse(0,R*0.04,R*1.05,R*0.92,0,0,Math.PI*2);
+  ctx.stroke();
+}
+
+function drawEye_UNUSED(ctx, R){
+  const ex=R*0.42, ey=-R*0.16;
+  const er=R*0.36;  // büyük göz
+
+  // göz çevresi koyu tüy halkası (fotoğrafta var)
+  ctx.fillStyle='rgba(90,55,0,0.30)';
+  ctx.beginPath(); ctx.arc(ex,ey,er*1.28,0,Math.PI*2); ctx.fill();
+
+  // sklera
+  const sg=ctx.createRadialGradient(ex-er*0.15,ey-er*0.15,er*0.05,ex,ey,er);
+  sg.addColorStop(0,'#ffffff'); sg.addColorStop(1,'#e8e8e8');
+  ctx.fillStyle=sg;
+  ctx.beginPath(); ctx.arc(ex,ey,er,0,Math.PI*2); ctx.fill();
+
+  // iris — açık grimsı (fotoğrafta pupil çok büyük, iris az görünüyor)
+  ctx.fillStyle='#b0a890';
+  ctx.beginPath(); ctx.arc(ex+R*0.03,ey+R*0.02,er*0.76,0,Math.PI*2); ctx.fill();
+
+  // pupil — büyük, mat siyah
+  ctx.fillStyle='#080808';
+  ctx.beginPath(); ctx.arc(ex+R*0.04,ey+R*0.03,er*0.56,0,Math.PI*2); ctx.fill();
+
+  // catchlight — büyük, fotoğraftaki gibi
+  ctx.fillStyle='rgba(255,255,255,0.95)';
+  ctx.beginPath(); ctx.arc(ex+R*0.14,ey-R*0.12,er*0.24,0,Math.PI*2); ctx.fill();
+  // küçük ikincil parlaklık
+  ctx.fillStyle='rgba(255,255,255,0.40)';
+  ctx.beginPath(); ctx.arc(ex-R*0.08,ey+R*0.18,er*0.10,0,Math.PI*2); ctx.fill();
+
+  // göz üst kapak çizgisi
+  ctx.strokeStyle='rgba(50,25,0,0.45)';
+  ctx.lineWidth=1.4;
+  ctx.beginPath();
+  ctx.arc(ex,ey,er,Math.PI*1.05,Math.PI*0.02,false);
+  ctx.stroke();
+}
+
+function drawBeak_UNUSED(ctx, R){
+  // Fotoğraf: kısa, sivri, turuncu, hafif aşağı kıvrık
+  const bx=R*0.80, by=R*0.04;
+
+  ctx.shadowColor='rgba(160,60,0,0.35)'; ctx.shadowBlur=5;
+
+  // üst gaga
+  ctx.fillStyle='#e07800';
+  ctx.beginPath();
+  ctx.moveTo(bx, by-R*0.10);
+  ctx.quadraticCurveTo(bx+R*0.45, by+R*0.02, bx+R*0.68, by+R*0.06);
+  ctx.quadraticCurveTo(bx+R*0.38, by+R*0.14, bx,        by+R*0.12);
+  ctx.closePath(); ctx.fill();
+
+  // alt gaga
+  ctx.fillStyle='#c06000';
+  ctx.beginPath();
+  ctx.moveTo(bx, by+R*0.12);
+  ctx.quadraticCurveTo(bx+R*0.36, by+R*0.16, bx+R*0.55, by+R*0.13);
+  ctx.quadraticCurveTo(bx+R*0.28, by+R*0.30, bx,        by+R*0.28);
+  ctx.closePath(); ctx.fill();
+  ctx.shadowBlur=0;
+
+  // gaga highlight
+  ctx.fillStyle='rgba(255,195,55,0.50)';
+  ctx.beginPath();
+  ctx.moveTo(bx+R*0.04, by-R*0.06);
+  ctx.quadraticCurveTo(bx+R*0.36, by+R*0.00, bx+R*0.52, by+R*0.04);
+  ctx.quadraticCurveTo(bx+R*0.28, by+R*0.06, bx+R*0.04, by+R*0.04);
+  ctx.closePath(); ctx.fill();
+
+  // gaga kapanma çizgisi
+  ctx.strokeStyle='rgba(120,50,0,0.40)';
+  ctx.lineWidth=0.9;
+  ctx.beginPath();
+  ctx.moveTo(bx+R*0.01, by+R*0.12);
+  ctx.quadraticCurveTo(bx+R*0.32, by+R*0.14, bx+R*0.55, by+R*0.13);
+  ctx.stroke();
+}
+
+// renk yardımcıları
+function lighten(hex, amt){
+  const n=parseInt(hex.slice(1),16);
+  const r=Math.min(255,((n>>16)&255)+amt), g=Math.min(255,((n>>8)&255)+amt), b=Math.min(255,(n&255)+amt);
+  return `rgb(${r},${g},${b})`;
+}
+function darken(hex, amt){ return lighten(hex,-amt); }
+
+/* ── PARTICLES ── */
+function burst(x,y){
+  for(let i=0;i<6;i++){
+    const a=Math.random()*Math.PI*2,s=Math.random()*3+1;
+    particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-1.5,r:Math.random()*3+1.5,a:0.8,c:`hsl(${38+Math.random()*20},100%,60%)`});
+  }
+}
+function tickParticles(){ particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.18;p.a-=0.05;p.r*=0.93;}); particles=particles.filter(p=>p.a>0); }
+function drawParticles(){ particles.forEach(p=>{ctx.save();ctx.globalAlpha=p.a;ctx.fillStyle=p.c;ctx.shadowColor=p.c;ctx.shadowBlur=5;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.restore();}); }
+
+/* ── PIPES ── */
+function spawnPipe(){
+  const minTop=H*0.10,maxTop=H-GROUND_H-GAP-H*0.10;
+  pipes.push({x:W+PIPE_W,topH:Math.random()*(maxTop-minTop)+minTop,scored:false});
+}
+function drawPipe(p){
+  const {x,topH}=p, capE=PIPE_W*0.16, capH=Math.round(H*0.042);
+  const botY=topH+GAP, botH=H-GROUND_H-botY;
+  function bG(){const g=ctx.createLinearGradient(x,0,x+PIPE_W,0);g.addColorStop(0,'#0c3c16');g.addColorStop(0.14,'#186830');g.addColorStop(0.36,'#26a844');g.addColorStop(0.54,'#20923c');g.addColorStop(0.76,'#125820');g.addColorStop(1,'#072610');return g;}
+  function cG(){const g=ctx.createLinearGradient(x-capE,0,x+PIPE_W+capE,0);g.addColorStop(0,'#0a3412');g.addColorStop(0.14,'#146026');g.addColorStop(0.36,'#22943e');g.addColorStop(0.54,'#1c8036');g.addColorStop(0.76,'#0e4c1a');g.addColorStop(1,'#051e08');return g;}
+  // top
+  ctx.fillStyle=bG();ctx.fillRect(x,0,PIPE_W,topH);
+  ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fillRect(x+PIPE_W*.10,0,PIPE_W*.16,topH);
+  ctx.fillStyle='rgba(0,0,0,0.14)';ctx.fillRect(x+PIPE_W*.74,0,PIPE_W*.16,topH);
+  ctx.fillStyle=cG();ctx.shadowColor='rgba(0,210,70,0.25)';ctx.shadowBlur=10;
+  ctx.beginPath();ctx.roundRect(x-capE,topH-capH,PIPE_W+capE*2,capH,[0,0,6,6]);ctx.fill();ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(255,255,255,0.09)';ctx.fillRect(x-capE+5,topH-capH+4,(PIPE_W+capE*2)*.20,capH-8);
+  ctx.strokeStyle='rgba(0,240,80,0.14)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x-capE,topH-capH);ctx.lineTo(x+PIPE_W+capE,topH-capH);ctx.stroke();
+  // bottom
+  ctx.fillStyle=bG();ctx.fillRect(x,botY,PIPE_W,botH);
+  ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fillRect(x+PIPE_W*.10,botY,PIPE_W*.16,botH);
+  ctx.fillStyle='rgba(0,0,0,0.14)';ctx.fillRect(x+PIPE_W*.74,botY,PIPE_W*.16,botH);
+  ctx.fillStyle=cG();ctx.shadowColor='rgba(0,210,70,0.25)';ctx.shadowBlur=10;
+  ctx.beginPath();ctx.roundRect(x-capE,botY,PIPE_W+capE*2,capH,[6,6,0,0]);ctx.fill();ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(255,255,255,0.09)';ctx.fillRect(x-capE+5,botY+4,(PIPE_W+capE*2)*.20,capH-8);
+  ctx.strokeStyle='rgba(0,240,80,0.14)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x-capE,botY+capH);ctx.lineTo(x+PIPE_W+capE,botY+capH);ctx.stroke();
+}
+
+/* ── GROUND — sade realistik çimen ── */
+function drawGround(){
+  const gy=H-GROUND_H;
+
+  // toprak
+  const soil=ctx.createLinearGradient(0,gy,0,H);
+  soil.addColorStop(0,'#2e5c18'); soil.addColorStop(0.22,'#1e400e'); soil.addColorStop(1,'#0c1c06');
+  ctx.fillStyle=soil; ctx.fillRect(0,gy,W,GROUND_H);
+
+  // çimen taban bandı — düz gradient, göz yormayan
+  const grassH=GROUND_H*0.42;
+  const grassG=ctx.createLinearGradient(0,gy,0,gy+grassH);
+  grassG.addColorStop(0,'#52c83c');
+  grassG.addColorStop(0.5,'#3aa028');
+  grassG.addColorStop(1,'#267814');
+  ctx.fillStyle=grassG; ctx.fillRect(0,gy,W,grassH);
+
+  // çok ince üst parlaklık çizgisi
+  ctx.fillStyle='rgba(140,255,100,0.12)'; ctx.fillRect(0,gy,W,2);
+
+  // sade çimen blade'leri — sayısı az, boyları benzer, renk sakin
+  const count=28;
+  const spacing=W/count;
+  for(let i=0;i<count+1;i++){
+    const baseX=((groundX*0.9+i*spacing)%(W+spacing)+W+spacing)%(W+spacing)-spacing*0.5;
+    // her noktada 2 blade, hafif ayrık
+    [-3,3].forEach(offset=>{
+      const bx=baseX+offset;
+      // blade boyu çok benzer, küçük varyasyon
+      const bh=grassH*(0.78+Math.sin(i*1.7+offset)*0.14);
+      // hafif sağa-sola eğim
+      const lean=Math.sin(i*0.9+offset*0.5)*0.12;
+
+      const bg=ctx.createLinearGradient(bx,gy,bx+lean*bh,gy-bh);
+      bg.addColorStop(0,'#2e8a18');
+      bg.addColorStop(0.6,'#46b828');
+      bg.addColorStop(1,'#72d840');
+      ctx.fillStyle=bg;
+      ctx.beginPath();
+      ctx.moveTo(bx-2.5, gy);
+      ctx.quadraticCurveTo(bx+lean*bh*0.5-1, gy-bh*0.55, bx+lean*bh, gy-bh);
+      ctx.quadraticCurveTo(bx+lean*bh*0.5+1, gy-bh*0.55, bx+2.5,     gy);
+      ctx.fill();
+    });
+  }
+}
+
+/* ── BACKGROUND ── */
+let moonP=0;
+function drawBackground(){
+  const sky=ctx.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0,'#02040e'); sky.addColorStop(0.30,'#060e40');
+  sky.addColorStop(0.60,'#121f78'); sky.addColorStop(0.84,'#1e126a'); sky.addColorStop(1,'#080520');
+  ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+
+  [[W*.72,H*.16,H*.26,'rgba(70,0,160,0.07)'],[W*.18,H*.38,H*.21,'rgba(0,50,180,0.07)'],[W*.5,H*.52,H*.19,'rgba(140,0,70,0.05)']].forEach(([nx,ny,nr,nc])=>{
+    const nb=ctx.createRadialGradient(nx,ny,0,nx,ny,nr); nb.addColorStop(0,nc); nb.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=nb; ctx.fillRect(0,0,W,H);
+  });
+
+  moonP+=0.018;
+  const mx=W*.80,my=H*.11,mr=H*.052;
+  const mg=ctx.createRadialGradient(mx,my,mr*.25,mx,my,mr*2.8);
+  mg.addColorStop(0,'rgba(220,210,150,0.14)'); mg.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=mg; ctx.beginPath(); ctx.arc(mx,my,mr*2.8,0,Math.PI*2); ctx.fill();
+  const mf=ctx.createRadialGradient(mx-mr*.22,my-mr*.18,mr*.08,mx,my,mr);
+  mf.addColorStop(0,'#fffbe8'); mf.addColorStop(0.6,'#e8e0b0'); mf.addColorStop(1,'#c0b070');
+  ctx.fillStyle=mf; ctx.shadowColor='rgba(255,245,180,0.30)'; ctx.shadowBlur=16+Math.sin(moonP)*5;
+  ctx.beginPath(); ctx.arc(mx,my,mr,0,Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(150,140,80,0.24)';
+  [[mx-mr*.28,my+mr*.14,mr*.17],[mx+mr*.30,my-mr*.28,mr*.11],[mx-mr*.04,my-mr*.34,mr*.08]].forEach(([cx,cy,cr])=>{ctx.beginPath();ctx.arc(cx,cy,cr,0,Math.PI*2);ctx.fill();});
+
+  stars.forEach(s=>{
+    s.tw+=0.034; ctx.globalAlpha=s.a*(0.55+0.45*Math.sin(s.tw));
+    ctx.fillStyle='#fff'; ctx.shadowColor='#aadeff'; ctx.shadowBlur=s.r>1.3?3:0;
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+    if(state==='playing'){s.x-=s.spd; if(s.x<0){s.x=W;s.y=Math.random()*H*0.8;}}
+  });
+  ctx.globalAlpha=1; ctx.shadowBlur=0;
+
+  const gy=H-GROUND_H;
+  buildings.forEach(b=>{
+    const bx=((b.x-cityX)%(W+400)+W+400)%(W+400)-150;
+    ctx.fillStyle='rgba(5,8,26,0.90)'; ctx.fillRect(bx,gy-b.h,b.w,b.h);
+    const wrows=Math.floor(b.h/20),wcols=Math.floor(b.w/11);
+    b.wins.forEach((lit,i)=>{
+      const row=Math.floor(i/3)%Math.max(wrows,1),col=i%Math.max(wcols,1);
+      if(col>=wcols) return;
+      if(lit||Math.random()<0.0008){ctx.fillStyle=Math.random()<.25?'rgba(180,210,255,0.45)':'rgba(255,230,130,0.4)';ctx.fillRect(bx+3+col*11,gy-b.h+6+row*20,7,9);}
+    });
+    ctx.fillStyle='rgba(25,35,90,0.7)'; ctx.fillRect(bx+b.w*.35,gy-b.h-9,b.w*.07,9);
+    if(Math.floor(frame/28)%2===0){ctx.fillStyle='rgba(255,50,50,0.75)';ctx.beginPath();ctx.arc(bx+b.w*.385,gy-b.h-9,2,0,Math.PI*2);ctx.fill();}
+  });
+  if(state==='playing') cityX+=0.55;
+}
+
+function drawHUD(){
+  ctx.save(); ctx.textAlign='center';
+  ctx.font=`bold ${Math.round(H*.068)}px "Segoe UI",sans-serif`;
+  ctx.shadowColor='rgba(0,0,0,0.55)'; ctx.shadowBlur=10;
+  ctx.fillStyle='rgba(255,255,255,0.95)'; ctx.fillText(score,W/2,H*.088);
+  ctx.font=`600 ${Math.round(H*.025)}px "Segoe UI",sans-serif`;
+  ctx.fillStyle='rgba(255,215,60,0.75)'; ctx.fillText(`BEST  ${best}`,W/2,H*.128);
+  ctx.restore();
+}
+function drawIdle(){
+  ctx.save(); ctx.textAlign='center';
+  const fs=Math.round(H*.086);
+  ctx.font=`800 ${fs}px "Segoe UI",sans-serif`;
+  ctx.shadowColor='#00D4FF'; ctx.shadowBlur=36;
+  ctx.fillStyle='#00D4FF'; ctx.fillText('NEON',W/2,H*.30);
+  ctx.shadowColor='#FF006E'; ctx.shadowBlur=36;
+  ctx.fillStyle='#FF006E'; ctx.fillText('BIRD',W/2,H*.30+fs*1.08);
+  ctx.shadowBlur=0;
+  ctx.restore();
+}
+function drawDead(){
+  deadAnimT=Math.min(deadAnimT+0.065,1);
+  const e=1-Math.pow(1-deadAnimT,3);
+  ctx.fillStyle=`rgba(2,4,14,${0.65*e})`; ctx.fillRect(0,0,W,H);
+  const pw=Math.min(W*.76,370),ph=H*.37,px=(W-pw)/2,py=H*.5-ph/2-(1-e)*55;
+  ctx.save(); ctx.globalAlpha=e;
+  ctx.fillStyle='rgba(7,12,48,0.97)'; ctx.strokeStyle='rgba(0,190,255,0.22)'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.roundRect(px,py,pw,ph,18); ctx.fill(); ctx.stroke();
+  ctx.font=`800 ${Math.round(H*.054)}px "Segoe UI",sans-serif`; ctx.textAlign='center';
+  ctx.shadowColor='#ff1860'; ctx.shadowBlur=22; ctx.fillStyle='#ff3d7a';
+  ctx.fillText('GAME OVER',W/2,py+ph*.26); ctx.shadowBlur=0;
+  ctx.strokeStyle='rgba(0,190,255,0.12)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(px+pw*.1,py+ph*.38); ctx.lineTo(px+pw*.9,py+ph*.38); ctx.stroke();
+  const lx=W/2-pw*.22,rx=W/2+pw*.22;
+  ctx.font=`600 ${Math.round(H*.021)}px "Segoe UI",sans-serif`; ctx.fillStyle='rgba(140,195,255,0.6)';
+  ctx.fillText('SCORE',lx,py+ph*.52); ctx.fillText('BEST',rx,py+ph*.52);
+  ctx.font=`800 ${Math.round(H*.058)}px "Segoe UI",sans-serif`;
+  ctx.fillStyle='#fff'; ctx.shadowBlur=6; ctx.shadowColor='rgba(0,0,0,0.4)'; ctx.fillText(score,lx,py+ph*.73);
+  ctx.fillStyle='#ffd700'; ctx.shadowColor='rgba(255,200,0,0.4)'; ctx.fillText(best,rx,py+ph*.73); ctx.shadowBlur=0;
+  const bw=pw*.60,bh=H*.055,bx2=(W-bw)/2,by2=py+ph*.845;
+  const bg2=ctx.createLinearGradient(bx2,by2,bx2+bw,by2);
+  bg2.addColorStop(0,'#00c8ff'); bg2.addColorStop(1,'#007ac2');
+  ctx.fillStyle=bg2; ctx.shadowColor='rgba(0,200,255,0.5)'; ctx.shadowBlur=16;
+  ctx.beginPath(); ctx.roundRect(bx2,by2,bw,bh,bh/2); ctx.fill(); ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(255,255,255,0.15)'; ctx.beginPath(); ctx.roundRect(bx2+4,by2+3,bw-8,bh/2-2,bh/2); ctx.fill();
+  ctx.fillStyle='#00111f'; ctx.font=`700 ${Math.round(H*.024)}px "Segoe UI",sans-serif`;
+  ctx.fillText('PLAY AGAIN',W/2,by2+bh*.64);
+  ctx.restore();
+}
+
+function checkHit(){
+  const R=bird.R*0.60;
+  if(bird.y+R>H-GROUND_H||bird.y-R<0) return true;
+  for(const p of pipes){
+    const capE=PIPE_W*0.16;
+    if(bird.x+R>p.x-capE&&bird.x-R<p.x+PIPE_W+capE){if(bird.y-R<p.topH||bird.y+R>p.topH+GAP) return true;}
+  }
+  return false;
+}
+function tickScore(){
+  pipes.forEach(p=>{if(!p.scored&&p.x+PIPE_W<bird.x){p.scored=true;score++;flashAlpha=1;if(score>best){best=score;localStorage.setItem('fb_best',best);}}});
+}
+
+const PIPE_INTERVAL=()=>Math.round(W*0.40);
+const PIPE_SPEED=()=>W*0.0040+1.6;
+
+function loop(){
+  frame++;
+  if(state==='playing') groundX-=2.8;
+  drawBackground();
+  if(state==='playing'){
+    pipeTimer++;
+    if(pipeTimer>=PIPE_INTERVAL()){spawnPipe();pipeTimer=0;}
+    const spd=PIPE_SPEED();
+    pipes.forEach(p=>p.x-=spd);
+    pipes=pipes.filter(p=>p.x+PIPE_W*1.2>0);
+  }
+  pipes.forEach(drawPipe);
+  drawGround();
+  tickParticles(); drawParticles();
+  bird.update(); bird.draw();
+  if(state==='playing'){tickScore();if(checkHit())die();}
+  if(flashAlpha>0){ctx.fillStyle=`rgba(255,230,50,${flashAlpha*.11})`;ctx.fillRect(0,0,W,H);flashAlpha-=0.06;}
+  if(state!=='idle') drawHUD();
+  if(state==='idle')  drawIdle();
+  if(state==='dead')  drawDead();
+  requestAnimationFrame(loop);
+}
+
+function startGame(){state='playing';score=0;pipes=[];pipeTimer=0;particles=[];deadAnimT=0;bird.reset();}
+function die(){state='dead';deadAnimT=0;}
+function input(){
+  if(state==='idle'){startGame();bird.flap();}
+  else if(state==='playing') bird.flap();
+  else if(state==='dead') startGame();
+}
+document.addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();input();}});
+canvas.addEventListener('click',input);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();input();},{passive:false});
+
+resize(); loop();
+</script>
+
+<script>
+// Service Worker for PWA installability
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // Inline service worker via blob
+    const swCode = `
+self.addEventListener('install', e => self.skipWaiting());
+self.addEventListener('activate', e => clients.claim());
+self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => new Response(''))));
+    `;
+    const blob = new Blob([swCode], {type: 'application/javascript'});
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
